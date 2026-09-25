@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens.
+ * One neutral ramp + one brand ramp + one "deal" accent. Keeping the palette
+ * this small is what makes the UI feel consistent instead of generic.
+ */
+@theme {
+  --color-brand-50: oklch(0.97 0.02 275);
+  --color-brand-100: oklch(0.94 0.04 275);
+  --color-brand-200: oklch(0.89 0.07 275);
+  --color-brand-300: oklch(0.81 0.11 275);
+  --color-brand-400: oklch(0.71 0.15 275);
+  --color-brand-500: oklch(0.62 0.18 275);
+  --color-brand-600: oklch(0.54 0.19 275);
+  --color-brand-700: oklch(0.46 0.17 275);
+  --color-brand-800: oklch(0.39 0.14 275);
+  --color-brand-900: oklch(0.33 0.11 275);
+
+  --color-deal-50: oklch(0.96 0.03 155);
+  --color-deal-100: oklch(0.92 0.06 155);
+  --color-deal-600: oklch(0.52 0.13 155);
+  --color-deal-700: oklch(0.44 0.11 155);
+
+  --color-ink-50: oklch(0.985 0.002 275);
+  --color-ink-100: oklch(0.96 0.003 275);
+  --color-ink-200: oklch(0.92 0.004 275);
+  --color-ink-300: oklch(0.86 0.005 275);
+  --color-ink-400: oklch(0.7 0.008 275);
+  --color-ink-500: oklch(0.56 0.01 275);
+  --color-ink-600: oklch(0.45 0.012 275);
+  --color-ink-700: oklch(0.36 0.012 275);
+  --color-ink-800: oklch(0.26 0.012 275);
+  --color-ink-900: oklch(0.18 0.012 275);
+
+  --font-sans:
+    var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  --radius-card: 0.875rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply text-ink-800 bg-white antialiased;
+  }
+
+  /* Visible, consistent focus ring everywhere (WCAG 2.4.7). */
+  :focus-visible {
+    @apply outline-brand-600 outline-2 outline-offset-2;
+  }
+
+  /* Respect the user's motion preference. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .skeleton {
+    @apply bg-ink-100 animate-pulse rounded-md;
+  }
+}
